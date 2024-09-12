@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: ${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: ${POSTGRES_SCHEMAS}
+    show-sql: true
+  application:
+    openApi:
+      title: Banks API
+      description: Banks API
+      version: 1.0
+      license:
+        name: Apache License Version 2.0
+        url: https://www.apache.org/licenses/LICENSE-2.0
+      name: banks-api
+      url: https://citad.com
+server:
+  port: 8089
