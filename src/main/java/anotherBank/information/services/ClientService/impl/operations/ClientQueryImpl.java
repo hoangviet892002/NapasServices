@@ -29,41 +29,14 @@ public class ClientQueryImpl implements ClientQueryService {
 
 
     @Override
-    public Mono<BaseResponse<BaseList<ClientResponse>>> queryClient(String number) {
-        return Mono.fromCallable(() -> clientRepo.findByNumber(number))
-                .map(clientEntity -> {
-                    if (clientEntity == null) {
-                        return BaseResponse.<BaseList<ClientResponse>>builder()
-                                .responseCode(ResponseEnum.DATA_NOT_FOUND.getCode())
-                                .message("Client not found")
-                                .data(BaseList.<ClientResponse>builder()
-                                        .items(Collections.emptyList())
-                                        .totalPage(0)
-                                        .total(0)
-                                        .build())
-                                .build();
-                    } else {
-                        ClientResponse clientResponse = clientMapper.EntityToResponse(clientEntity);
-                        return BaseResponse.<BaseList<ClientResponse>>builder()
-                                .responseCode(ResponseEnum.SUCCESS.getCode())
-                                .message(ResponseEnum.SUCCESS.getMessage())
-                                .data(BaseList.<ClientResponse>builder()
-                                        .items(Collections.singletonList(clientResponse))
-                                        .totalPage(1)
-                                        .total(1)
-                                        .build())
-                                .build();
-                    }
-                })
-                .onErrorResume(e -> Mono.just(BaseResponse.<BaseList<ClientResponse>>builder()
-                        .responseCode(ResponseEnum.INTERNAL_ERROR.getCode())
-                        .message(ResponseEnum.INTERNAL_ERROR.getMessage())
-                        .data(BaseList.<ClientResponse>builder()
-                                .items(Collections.emptyList())
-                                .totalPage(0)
-                                .total(0)
-                                .build())
-                        .build()));
+    public Mono<ClientResponse> queryClient(String number) {
+        try {
+            ClientResponse clientResponse = clientMapper.EntityToResponse(clientRepo.findByNumber(number));
+            return Mono.just(clientResponse);
+        }
+        catch (Exception e) {
+            return Mono.empty();
+        }
     }
 
 

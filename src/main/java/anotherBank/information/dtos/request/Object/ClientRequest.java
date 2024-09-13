@@ -18,4 +18,7 @@ public class ClientRequest {
     @JsonProperty("accountNumber")
     private String accountNumber;
 
+    @JsonProperty("bankId")
+    private String bankId;
+
 }

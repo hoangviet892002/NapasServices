@@ -7,8 +7,6 @@ import anotherBank.information.dtos.response.Object.ClientResponse;
 import anotherBank.information.services.ClientService.ClientService;
 import anotherBank.information.services.ClientService.impl.operations.ClientInsertImpl;
 import anotherBank.information.services.ClientService.impl.operations.ClientQueryImpl;
-import anotherBank.information.services.ClientService.operations.ClientInsertService;
-import anotherBank.information.services.ClientService.operations.ClientQueryService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -29,7 +27,7 @@ public class ClientServiceImpl  implements ClientService {
     }
 
     @Override
-    public Mono<BaseResponse<BaseList<ClientResponse>>> queryClient(String number) {
+    public Mono<ClientResponse> queryClient(String number) {
         return clientQuery.queryClient(number);
     }
 }

@@ -23,7 +23,7 @@ public class GetClient {
     }
 
     @GetMapping
-    public Mono<BaseResponse<BaseList<ClientResponse>>> getClient(String number) {
+    public Mono<ClientResponse> getClient(String number) {
         return clientService.queryClient(number);
     }
 }

@@ -28,7 +28,12 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public Mono<BaseResponse<BaseList<BankResponse>>> queryBanks(String page, String size) {
+    public Mono<BaseList<BankResponse>> queryBanks(String page, String size) {
         return bankQueryImpl.queryBanks(page, size);
+    }
+
+    @Override
+    public Mono<Boolean> checkBankExist(String bankId) {
+        return bankQueryImpl.checkBankExist(bankId);
     }
 }
