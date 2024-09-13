@@ -12,12 +12,14 @@ import java.util.List;
 @Setter
 @Builder
 public class BaseList<T> {
-    @JsonProperty("items")
-    private List<T> items;
-    @JsonProperty("total")
-    private int total;
     @JsonProperty("page")
     private int page;
+    @JsonProperty("size")
+    private int size;
     @JsonProperty("totalPage")
     private int totalPage;
+    @JsonProperty("totalRecord")
+    private int totalRecord;
+    @JsonProperty("data")
+    private List<T> data;
 }
