@@ -19,7 +19,7 @@ public class ClientEntity extends BaseEntity {
     @Column(name = "number")
     private String number;
     @ManyToOne
-    @JoinColumn(name = "bank_id", referencedColumnName = "id")
+    @JoinColumn(name = "bank_code", referencedColumnName = "code")
     private BankEntity bank;
 
 }

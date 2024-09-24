@@ -6,5 +6,5 @@ import anotherBank.information.dtos.response.Object.ClientResponse;
 import reactor.core.publisher.Mono;
 
 public interface ClientQueryService {
-    Mono<ClientResponse> queryClient(String number);
+    Mono<ClientResponse> queryClient(String number, String bank);
 }

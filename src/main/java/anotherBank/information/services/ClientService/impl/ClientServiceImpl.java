@@ -27,7 +27,7 @@ public class ClientServiceImpl  implements ClientService {
     }
 
     @Override
-    public Mono<ClientResponse> queryClient(String number) {
-        return clientQuery.queryClient(number);
+    public Mono<ClientResponse> queryClient(String number, String bank) {
+        return clientQuery.queryClient(number, bank);
     }
 }

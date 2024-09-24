@@ -8,6 +8,7 @@ import anotherBank.information.services.ClientService.ClientService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
@@ -23,7 +24,8 @@ public class GetClient {
     }
 
     @GetMapping
-    public Mono<ClientResponse> getClient(String number) {
-        return clientService.queryClient(number);
+    public Mono<ClientResponse> getClient(@RequestParam String number, @RequestParam String bank) {
+        return clientService.queryClient(number, bank);
     }
+
 }

@@ -29,9 +29,9 @@ public class ClientQueryImpl implements ClientQueryService {
 
 
     @Override
-    public Mono<ClientResponse> queryClient(String number) {
+    public Mono<ClientResponse> queryClient(String number, String bank) {
         try {
-            ClientResponse clientResponse = clientMapper.EntityToResponse(clientRepo.findByNumber(number));
+            ClientResponse clientResponse = clientMapper.EntityToResponse(clientRepo.findByNumberAndBankCode(number, bank));
             return Mono.just(clientResponse);
         }
         catch (Exception e) {

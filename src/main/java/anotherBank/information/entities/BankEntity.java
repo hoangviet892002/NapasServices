@@ -1,9 +1,6 @@
 package anotherBank.information.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,14 +12,17 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "bank")
+@Table(name = "bank", uniqueConstraints = @UniqueConstraint(columnNames = "code"))
 @Entity
 public class BankEntity extends BaseEntity{
-    @Column(name = "code")
+
+    @Column(name = "code", unique = true)
     private String code;
+
     @Column(name = "name")
     private String name;
-    @OneToMany(mappedBy = "bank")
+
+    @OneToMany(mappedBy = "bank", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ClientEntity> clientEntityList;
 
 }
