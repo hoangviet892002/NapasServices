@@ -10,6 +10,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         default_schema: ${POSTGRES_SCHEMAS}
+
     show-sql: true
   application:
     openApi:
@@ -22,4 +23,4 @@ spring:
       name: banks-api
       url: https://citad.com
 server:
-  port: 8089
+  port: 8083

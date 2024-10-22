@@ -4,5 +4,6 @@ import anotherBank.information.entities.ClientEntity;
 
 public interface ClientReadRepo {
     ClientEntity findByName (String name);
-    ClientEntity findByNumberAndBankCode(String number, String bank);
+    ClientEntity findByNumber(String number);
+    ClientEntity findByNumberAndBankCode(String number, String bankCode);
 }

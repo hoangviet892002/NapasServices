@@ -1,0 +1,42 @@
+version: "3.8"
+services:
+
+  # PostgreSQL service
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: napas
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+#      - ./docker-postgresql-multiple-databases:/docker-entrypoint-initdb.d
+    networks:
+      - napas-net
+    restart: always
+
+  # Napas service
+  napas:
+    image: napas-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_SCHEMAS: ${POSTGRES_SCHEMAS}
+    ports:
+      - "8083:8083"
+    networks:
+      - napas-net
+
+
+# Create a network to allow inter-container communication
+networks:
+  napas-net:
+    driver: bridge
